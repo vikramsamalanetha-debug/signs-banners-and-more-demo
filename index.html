@@ -115,14 +115,11 @@ input:focus,select:focus,textarea:focus{border-color:var(--cobalt);outline:none}
 .swatches{display:flex;gap:.5rem;flex-wrap:wrap}
 .swatch{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);cursor:pointer;padding:0}
 .swatch[aria-pressed="true"]{border-color:var(--text);box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--text)}
-.stage{background:
-  linear-gradient(var(--bg),var(--bg)) padding-box;border:1px dashed var(--line);border-radius:4px;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.25rem;overflow:hidden}
-.preview{position:relative;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:0 10px 24px rgba(18,26,46,.22);transition:width .25s,height .25s,background .2s;max-width:100%}
-.preview span{font-weight:900;font-variation-settings:"wdth" 120;line-height:.95;padding:0 8%;word-break:break-word}
-.preview .grommet{width:12px;height:12px;background:radial-gradient(circle,#121A2E 0 2px,#cfd6dc 3px 4px,#8e9aa6 5px)}
-.preview .g-tl,.preview .g-tr{top:6px}.preview .g-bl,.preview .g-br{bottom:6px}
-.preview .g-tl,.preview .g-bl{left:6px}.preview .g-tr,.preview .g-br{right:6px}
-.estimate{margin-top:1.5rem;text-align:center}
+.stage{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:1rem;overflow:hidden}
+#scene{display:block;width:100%;height:auto;border-radius:3px}
+.custom-size{margin-top:.75rem}
+.custom-size[hidden]{display:none}
+.estimate{margin-top:.9rem;text-align:center}
 .estimate strong{font-size:1.9rem;font-weight:900;font-variation-settings:"wdth" 110;display:block}
 .estimate small{color:var(--muted)}
 
@@ -262,7 +259,7 @@ footer a{color:#fff}
   <section class="block builder-sec" id="builder">
     <div class="wrap">
       <h2>See your banner before you order</h2>
-      <p class="lede">Type your message and pick a size and color to see roughly how it will look. Send it over and you'll get a real layout and price.</p>
+      <p class="lede">Not sure how big a 3 × 10 really is? Pick a size and see it on a storefront next to an average-height person, drawn to scale. Send it over and you'll get a real layout and price.</p>
       <div class="builder">
         <div>
           <div class="field">
@@ -277,7 +274,13 @@ footer a{color:#fff}
               <option value="3x10" selected>3 × 10 ft</option>
               <option value="4x8">4 × 8 ft</option>
               <option value="4x12">4 × 12 ft</option>
+              <option value="5x16">5 × 16 ft</option>
+              <option value="custom">Custom size</option>
             </select>
+            <div class="two custom-size" id="customSize" hidden>
+              <div><label for="cH">Height (ft)</label><input id="cH" type="number" min="1" max="6" step="0.5" value="3"></div>
+              <div><label for="cW">Width (ft)</label><input id="cW" type="number" min="1" max="20" step="0.5" value="8"></div>
+            </div>
           </div>
           <div class="field">
             <label id="bColorLabel">Banner color</label>
@@ -296,11 +299,40 @@ footer a{color:#fff}
         </div>
         <div>
           <div class="stage" id="stage">
-            <div class="preview" id="preview" role="img" aria-label="Banner preview">
-              <span class="grommet g-tl"></span><span class="grommet g-tr"></span>
-              <span class="grommet g-bl"></span><span class="grommet g-br"></span>
-              <span id="pText">Now Open</span>
-            </div>
+            <svg id="scene" viewBox="0 0 600 360" role="img" aria-labelledby="sceneTitle">
+              <title id="sceneTitle">Banner preview on a storefront, to scale</title>
+              <defs>
+                <linearGradient id="scSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9CC3E4"/><stop offset="1" stop-color="#DCEAF4"/></linearGradient>
+                <pattern id="scBrick" width="20" height="10" patternUnits="userSpaceOnUse"><rect width="20" height="10" fill="#9A4A36"/><path d="M0 0H20M0 5H20M10 0V5M0 5V10M20 5V10" stroke="#C7A591" stroke-width=".8"/></pattern>
+                <linearGradient id="scGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6F8FAA"/><stop offset="1" stop-color="#2D3E50"/></linearGradient>
+                <filter id="scSh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".35"/></filter>
+              </defs>
+              <rect width="600" height="360" fill="url(#scSky)"/>
+              <!-- building: 24 ft wide x 15 ft tall, 1 ft = 20 units, ground at y=340 -->
+              <rect x="80" y="40" width="480" height="300" fill="url(#scBrick)"/>
+              <rect x="72" y="30" width="496" height="14" fill="#5B6770"/>
+              <rect x="120" y="210" width="140" height="120" fill="#3A2A22"/><rect x="126" y="216" width="128" height="114" fill="url(#scGlass)"/>
+              <rect x="420" y="210" width="110" height="120" fill="#3A2A22"/><rect x="426" y="216" width="98" height="114" fill="url(#scGlass)"/>
+              <rect x="300" y="196" width="68" height="144" fill="#3A2A22"/><rect x="306" y="202" width="56" height="138" fill="#1F3FBF"/><rect x="314" y="212" width="40" height="70" fill="url(#scGlass)"/><circle cx="352" cy="290" r="3" fill="#FFC629"/>
+              <polygon points="138,216 170,216 140,330 126,330" fill="#fff" opacity=".14"/><polygon points="436,216 460,216 438,330 426,330" fill="#fff" opacity=".14"/>
+              <rect y="340" width="600" height="20" fill="#B9BDC2"/><rect y="338" width="600" height="3" fill="#8E9AA6"/>
+              <g id="bannerG" filter="url(#scSh)">
+                <rect id="bRect" rx="1"/>
+                <text id="bTxt" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" style="font-variation-settings:'wdth' 118"></text>
+                <g id="bGrom" fill="#E6EBEF" stroke="#5B6770" stroke-width="1"></g>
+              </g>
+              <g id="dims" stroke="#121A2E" stroke-width="1.2" fill="#121A2E" font-family="Archivo,sans-serif" font-weight="800" font-size="11"></g>
+              <!-- person: 5 ft 9 in = 115 units -->
+              <g transform="translate(24 225)" fill="#121A2E">
+                <circle cx="20" cy="10" r="9"/>
+                <path d="M11 22 Q20 18 29 22 L33 58 L30 60 L28 36 L27 62 L28 115 L21 115 L20 70 L19 115 L12 115 L13 62 L12 36 L10 60 L7 58 Z"/>
+              </g>
+              <g font-family="Archivo,sans-serif" font-size="10.5" font-weight="700" fill="#121A2E">
+                <path d="M62 225 V340" stroke="#121A2E" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M58 225 H66 M58 340 H66" stroke="#121A2E" stroke-width="1"/>
+                <text x="10" y="216">5′9″ person</text>
+              </g>
+            </svg>
             <div class="estimate" aria-live="polite">
               <small id="priceNote">1 banner, 3 × 10 ft</small>
             </div>
@@ -522,35 +554,46 @@ footer a{color:#fff}
 <script>
 (function(){
   const text=document.getElementById('bText'),size=document.getElementById('bSize'),qty=document.getElementById('bQty');
-  const preview=document.getElementById('preview'),pText=document.getElementById('pText'),stage=document.getElementById('stage');
-  const note=document.getElementById('priceNote');
+  const note=document.getElementById('priceNote'),cBox=document.getElementById('customSize'),cH=document.getElementById('cH'),cW=document.getElementById('cW');
+  const rectEl=document.getElementById('bRect'),txtEl=document.getElementById('bTxt'),gromEl=document.getElementById('bGrom'),dims=document.getElementById('dims'),scene=document.getElementById('scene');
+  const FT=20, CX=320, BOTTOM=340-8.5*FT; // banner centered on wall, bottom edge 8.5 ft up
   let bg='#FFC629',fg='#121A2E';
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b);
+  const fmt=v=>Number.isInteger(v)?v:v.toFixed(1);
+  function dims_(){
+    if(size.value==='custom'){cBox.hidden=false;return[clamp(parseFloat(cH.value)||3,1,6),clamp(parseFloat(cW.value)||8,1,20)]}
+    cBox.hidden=true;return size.value.split('x').map(Number);
+  }
   function render(){
-    const [h,w]=size.value.split('x').map(Number);
-    const maxW=Math.min(stage.clientWidth-40,560);
-    const scale=maxW/12;
-    const pw=Math.max(w*scale,120),ph=h*scale;
-    preview.style.width=pw+'px';preview.style.height=ph+'px';
-    preview.style.background=bg;preview.style.color=fg;
-    preview.style.border=bg==='#FFFFFF'?'1px solid #D5DBDF':'none';
+    const [h,w]=dims_();
+    const W=w*FT,H=h*FT,x=CX-W/2,y=BOTTOM-H;
+    rectEl.setAttribute('x',x);rectEl.setAttribute('y',y);rectEl.setAttribute('width',W);rectEl.setAttribute('height',H);
+    rectEl.setAttribute('fill',bg);rectEl.setAttribute('stroke',bg==='#FFFFFF'?'#C9D1DA':'none');
     const t=text.value.trim()||'Your text here';
-    pText.textContent=t;
-    const fs=Math.min(ph*0.42,(pw*0.84)/Math.max(t.length*0.62,1));
-    pText.style.fontSize=Math.max(fs,10)+'px';
-    preview.setAttribute('aria-label','Banner preview: '+t+', '+h+' by '+w+' feet');
-    const n=Math.min(Math.max(parseInt(qty.value)||1,1),50);
-    note.textContent=n+' banner'+(n>1?'s':'')+', '+h+' × '+w+' ft';
+    txtEl.textContent=t;txtEl.setAttribute('x',CX);txtEl.setAttribute('y',y+H/2);txtEl.setAttribute('fill',fg);
+    txtEl.setAttribute('font-size',Math.max(Math.min(H*.5,(W*.86)/Math.max(t.length*.6,1)),4));
+    const r=Math.max(1.6,Math.min(3,H/18)),ins=r+2.5;
+    const xs=[x+ins,x+W-ins];const n=Math.max(0,Math.round(w/2)-1);for(let i=1;i<=n;i++)xs.push(x+ins+(W-2*ins)*i/(n+1));
+    gromEl.innerHTML=xs.map(gx=>`<circle cx="${gx}" cy="${y+ins}" r="${r}"/><circle cx="${gx}" cy="${y+H-ins}" r="${r}"/>`).join('');
+    // dimension lines
+    const dy=y-10,dx=x+W+10;
+    dims.innerHTML=`<path d="M${x} ${dy}H${x+W}M${x} ${dy-4}V${dy+4}M${x+W} ${dy-4}V${dy+4}"/><text x="${CX}" y="${dy-5}" text-anchor="middle" stroke="none" paint-order="stroke">${fmt(w)} ft</text>`+
+      `<path d="M${dx} ${y}V${y+H}M${dx-4} ${y}H${dx+4}M${dx-4} ${y+H}H${dx+4}"/><text x="${dx+6}" y="${y+H/2+4}" stroke="none">${fmt(h)} ft</text>`;
+    scene.setAttribute('aria-label','Preview: '+t+' banner, '+fmt(h)+' by '+fmt(w)+' feet, on a 24 foot wide storefront next to a 5 foot 9 inch person');
+    const q=clamp(parseInt(qty.value)||1,1,50);
+    note.textContent=q+' banner'+(q>1?'s':'')+', '+fmt(h)+' × '+fmt(w)+' ft. Storefront shown is 24 ft wide; person is 5′9″.';
   }
   document.querySelectorAll('.swatch').forEach(b=>b.addEventListener('click',()=>{
     document.querySelectorAll('.swatch').forEach(x=>x.setAttribute('aria-pressed','false'));
     b.setAttribute('aria-pressed','true');bg=b.dataset.bg;fg=b.dataset.fg;render();
   }));
-  [text,size,qty].forEach(el=>el.addEventListener('input',render));
+  [text,size,qty,cH,cW].forEach(el=>el.addEventListener('input',render));
+  size.addEventListener('change',render);
   window.addEventListener('resize',render);
   render();
 
   document.getElementById('useDesign').addEventListener('click',()=>{
-    const [h,w]=size.value.split('x');
+    const [h,w]=dims_();
     document.getElementById('qType').value='Vinyl banner';
     document.getElementById('qSize').value=h+'×'+w+' ft, '+(qty.value||1)+' banner(s)';
     document.getElementById('qMsg').value='Text: "'+(text.value.trim())+'"';

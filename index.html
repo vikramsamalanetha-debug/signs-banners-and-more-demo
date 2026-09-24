@@ -302,35 +302,108 @@ footer a{color:#fff}
             <svg id="scene" viewBox="0 0 600 360" role="img" aria-labelledby="sceneTitle">
               <title id="sceneTitle">Banner preview on a storefront, to scale</title>
               <defs>
-                <linearGradient id="scSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9CC3E4"/><stop offset="1" stop-color="#DCEAF4"/></linearGradient>
-                <pattern id="scBrick" width="20" height="10" patternUnits="userSpaceOnUse"><rect width="20" height="10" fill="#9A4A36"/><path d="M0 0H20M0 5H20M10 0V5M0 5V10M20 5V10" stroke="#C7A591" stroke-width=".8"/></pattern>
-                <linearGradient id="scGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6F8FAA"/><stop offset="1" stop-color="#2D3E50"/></linearGradient>
-                <filter id="scSh" x="-10%" y="-10%" width="120%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".35"/></filter>
+                <linearGradient id="scSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6FA3D4"/><stop offset=".6" stop-color="#A9CBE8"/><stop offset="1" stop-color="#E4EEF5"/></linearGradient>
+                <filter id="scBlur4"><feGaussianBlur stdDeviation="4"/></filter>
+                <filter id="scBlur1"><feGaussianBlur stdDeviation="1.2"/></filter>
+                <pattern id="scBrick" width="40" height="9" patternUnits="userSpaceOnUse">
+                  <rect width="40" height="9" fill="#C9B9A6"/>
+                  <rect x=".5" y=".5" width="12.4" height="3.6" fill="#94412F"/><rect x="13.8" y=".5" width="12.4" height="3.6" fill="#A34B36"/><rect x="27.1" y=".5" width="12.4" height="3.6" fill="#8A3C2C"/>
+                  <rect x="-6.2" y="5" width="12.4" height="3.6" fill="#9E4833"/><rect x="7.1" y="5" width="12.4" height="3.6" fill="#8F3F2E"/><rect x="20.4" y="5" width="12.4" height="3.6" fill="#A85039"/><rect x="33.7" y="5" width="12.4" height="3.6" fill="#93432F"/>
+                </pattern>
+                <pattern id="scBrick2" width="120" height="27" patternUnits="userSpaceOnUse">
+                  <rect x="14" y="0" width="12.4" height="3.6" fill="#7E3526" opacity=".6"/><rect x="60" y="9.5" width="12.4" height="3.6" fill="#B35A42" opacity=".55"/><rect x="95" y="18.5" width="12.4" height="3.6" fill="#7A3325" opacity=".5"/><rect x="33" y="23" width="12.4" height="3.6" fill="#B7604A" opacity=".45"/>
+                </pattern>
+                <filter id="scGrain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="4"/><feColorMatrix values="0 0 0 0 .1  0 0 0 0 .05  0 0 0 0 .03  0 0 0 .35 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+                <linearGradient id="scLight" x1="0" y1="0" x2="1" y2=".6"><stop offset="0" stop-color="#FFE9C8" stop-opacity=".18"/><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></linearGradient>
+                <linearGradient id="scAO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".35"/><stop offset="1" stop-color="#000" stop-opacity="0"/></linearGradient>
+                <linearGradient id="scCornice" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9D4CB"/><stop offset=".5" stop-color="#BDB6AA"/><stop offset="1" stop-color="#8F887D"/></linearGradient>
+                <linearGradient id="scGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8DB3D2"/><stop offset=".35" stop-color="#4E6C86"/><stop offset="1" stop-color="#27313B"/></linearGradient>
+                <linearGradient id="scInside" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3B0" stop-opacity=".0"/><stop offset=".6" stop-color="#FFD28A" stop-opacity=".22"/><stop offset="1" stop-color="#FFC56B" stop-opacity=".12"/></linearGradient>
+                <linearGradient id="scFrame" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2A2622"/><stop offset=".5" stop-color="#4A433C"/><stop offset="1" stop-color="#2A2622"/></linearGradient>
+                <linearGradient id="scStone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6E6A64"/><stop offset="1" stop-color="#4C4944"/></linearGradient>
+                <linearGradient id="scWalk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CFCBC3"/><stop offset="1" stop-color="#A9A59D"/></linearGradient>
+                <linearGradient id="scSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".35" stop-color="#fff" stop-opacity=".04"/><stop offset=".6" stop-color="#000" stop-opacity=".03"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>
+                <linearGradient id="scJeans" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3F5F85"/><stop offset="1" stop-color="#22354D"/></linearGradient>
+                <linearGradient id="scShirt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5E7A5A"/><stop offset="1" stop-color="#3A4F38"/></linearGradient>
+                <linearGradient id="scSkin" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D9A27E"/><stop offset="1" stop-color="#A9704F"/></linearGradient>
+                <radialGradient id="scLeaf" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#6E9C4A"/><stop offset="1" stop-color="#2F5222"/></radialGradient>
+                <filter id="scSh" x="-10%" y="-10%" width="130%" height="160%"><feDropShadow dx="2.5" dy="3.5" stdDeviation="2.2" flood-color="#2a1208" flood-opacity=".45"/></filter>
+                <clipPath id="scWallClip"><rect x="80" y="44" width="480" height="296"/></clipPath>
               </defs>
               <rect width="600" height="360" fill="url(#scSky)"/>
-              <!-- building: 24 ft wide x 15 ft tall, 1 ft = 20 units, ground at y=340 -->
-              <rect x="80" y="40" width="480" height="300" fill="url(#scBrick)"/>
-              <rect x="72" y="30" width="496" height="14" fill="#5B6770"/>
-              <rect x="120" y="210" width="140" height="120" fill="#3A2A22"/><rect x="126" y="216" width="128" height="114" fill="url(#scGlass)"/>
-              <rect x="420" y="210" width="110" height="120" fill="#3A2A22"/><rect x="426" y="216" width="98" height="114" fill="url(#scGlass)"/>
-              <rect x="300" y="196" width="68" height="144" fill="#3A2A22"/><rect x="306" y="202" width="56" height="138" fill="#1F3FBF"/><rect x="314" y="212" width="40" height="70" fill="url(#scGlass)"/><circle cx="352" cy="290" r="3" fill="#FFC629"/>
-              <polygon points="138,216 170,216 140,330 126,330" fill="#fff" opacity=".14"/><polygon points="436,216 460,216 438,330 426,330" fill="#fff" opacity=".14"/>
-              <rect y="340" width="600" height="20" fill="#B9BDC2"/><rect y="338" width="600" height="3" fill="#8E9AA6"/>
+              <g fill="#fff" opacity=".75" filter="url(#scBlur4)"><ellipse cx="60" cy="40" rx="50" ry="10"/><ellipse cx="95" cy="32" rx="30" ry="12"/><ellipse cx="560" cy="22" rx="40" ry="8"/></g>
+              <!-- neighbor building + tree -->
+              <rect x="560" y="96" width="40" height="244" fill="#D8CDB9"/><rect x="560" y="96" width="40" height="244" fill="url(#scLight)"/><rect x="570" y="150" width="30" height="60" fill="url(#scGlass)" opacity=".8"/>
+              <rect x="30" y="220" width="6" height="120" fill="#5A4030"/>
+              <g filter="url(#scBlur1)"><circle cx="33" cy="200" r="30" fill="url(#scLeaf)"/><circle cx="14" cy="222" r="20" fill="url(#scLeaf)"/><circle cx="55" cy="218" r="22" fill="url(#scLeaf)"/><circle cx="36" cy="176" r="20" fill="url(#scLeaf)"/></g>
+              <!-- main building, 24 ft wide x 15 ft; 1 ft = 20 units; ground y=340 -->
+              <rect x="80" y="44" width="480" height="296" fill="url(#scBrick)"/>
+              <rect x="80" y="44" width="480" height="296" fill="url(#scBrick2)"/>
+              <rect x="80" y="44" width="480" height="296" fill="#000" filter="url(#scGrain)" opacity=".9"/>
+              <rect x="80" y="44" width="480" height="296" fill="url(#scLight)"/>
+              <g clip-path="url(#scWallClip)"><rect x="80" y="44" width="480" height="18" fill="url(#scAO)"/></g>
+              <!-- cornice -->
+              <rect x="70" y="24" width="500" height="8" fill="url(#scCornice)"/><rect x="74" y="32" width="492" height="5" fill="#A59E92"/><rect x="78" y="37" width="484" height="7" fill="url(#scCornice)"/>
+              <g fill="#8F887D"><rect x="86" y="37" width="4" height="7"/><rect x="98" y="37" width="4" height="7"/><rect x="110" y="37" width="4" height="7"/><rect x="122" y="37" width="4" height="7"/><rect x="134" y="37" width="4" height="7"/><rect x="146" y="37" width="4" height="7"/><rect x="158" y="37" width="4" height="7"/><rect x="170" y="37" width="4" height="7"/><rect x="182" y="37" width="4" height="7"/><rect x="194" y="37" width="4" height="7"/><rect x="206" y="37" width="4" height="7"/><rect x="218" y="37" width="4" height="7"/><rect x="230" y="37" width="4" height="7"/><rect x="242" y="37" width="4" height="7"/><rect x="254" y="37" width="4" height="7"/><rect x="266" y="37" width="4" height="7"/><rect x="278" y="37" width="4" height="7"/><rect x="290" y="37" width="4" height="7"/><rect x="302" y="37" width="4" height="7"/><rect x="314" y="37" width="4" height="7"/><rect x="326" y="37" width="4" height="7"/><rect x="338" y="37" width="4" height="7"/><rect x="350" y="37" width="4" height="7"/><rect x="362" y="37" width="4" height="7"/><rect x="374" y="37" width="4" height="7"/><rect x="386" y="37" width="4" height="7"/><rect x="398" y="37" width="4" height="7"/><rect x="410" y="37" width="4" height="7"/><rect x="422" y="37" width="4" height="7"/><rect x="434" y="37" width="4" height="7"/><rect x="446" y="37" width="4" height="7"/><rect x="458" y="37" width="4" height="7"/><rect x="470" y="37" width="4" height="7"/><rect x="482" y="37" width="4" height="7"/><rect x="494" y="37" width="4" height="7"/><rect x="506" y="37" width="4" height="7"/><rect x="518" y="37" width="4" height="7"/><rect x="530" y="37" width="4" height="7"/><rect x="542" y="37" width="4" height="7"/><rect x="554" y="37" width="4" height="7"/></g>
+              <!-- sign band trim above storefront -->
+              <rect x="100" y="196" width="440" height="6" fill="#4A433C"/><rect x="100" y="196" width="440" height="2" fill="#6A625A"/>
+              <!-- storefront windows -->
+              <g><rect x="110" y="206" width="160" height="112" fill="url(#scFrame)"/><rect x="115" y="211" width="150" height="102" fill="url(#scGlass)"/>
+              <rect x="115" y="211" width="150" height="102" fill="url(#scInside)"/>
+              <g stroke="#1C232B" stroke-width="1.5" opacity=".45"><path d="M124 262H180M124 285H180M200 250H256M200 280H256"/></g>
+              <g fill="#1C232B" opacity=".35"><rect x="128" y="252" width="8" height="10"/><rect x="140" y="255" width="10" height="7"/><rect x="158" y="249" width="7" height="13"/><rect x="205" y="240" width="9" height="10"/><rect x="222" y="243" width="12" height="7"/><rect x="240" y="238" width="7" height="12"/></g>
+              <polygon points="140,211 172,211 132,313 115,313 115,270" fill="#fff" opacity=".13"/><polygon points="190,211 202,211 162,313 150,313" fill="#fff" opacity=".08"/>
+              <rect x="188" y="211" width="4" height="102" fill="url(#scFrame)"/></g><g><rect x="370" y="206" width="160" height="112" fill="url(#scFrame)"/><rect x="375" y="211" width="150" height="102" fill="url(#scGlass)"/>
+              <rect x="375" y="211" width="150" height="102" fill="url(#scInside)"/>
+              <g stroke="#1C232B" stroke-width="1.5" opacity=".45"><path d="M384 262H440M384 285H440M460 250H516M460 280H516"/></g>
+              <g fill="#1C232B" opacity=".35"><rect x="388" y="252" width="8" height="10"/><rect x="400" y="255" width="10" height="7"/><rect x="418" y="249" width="7" height="13"/><rect x="465" y="240" width="9" height="10"/><rect x="482" y="243" width="12" height="7"/><rect x="500" y="238" width="7" height="12"/></g>
+              <polygon points="400,211 432,211 392,313 375,313 375,270" fill="#fff" opacity=".13"/><polygon points="450,211 462,211 422,313 410,313" fill="#fff" opacity=".08"/>
+              <rect x="448" y="211" width="4" height="102" fill="url(#scFrame)"/></g>
+              <!-- bulkhead -->
+              <rect x="100" y="318" width="440" height="22" fill="url(#scStone)"/><rect x="100" y="318" width="440" height="2" fill="#8A857D"/>
+              <!-- door with transom -->
+              <rect x="286" y="182" width="68" height="158" fill="url(#scFrame)"/>
+              <rect x="291" y="186" width="58" height="10" fill="url(#scGlass)"/>
+              <rect x="291" y="200" width="58" height="140" fill="#2F2A25"/><rect x="296" y="205" width="48" height="128" fill="url(#scGlass)"/><rect x="296" y="205" width="48" height="128" fill="url(#scInside)"/>
+              <polygon points="306,205 318,205 300,333 296,333 296,260" fill="#fff" opacity=".12"/>
+              <rect x="299" y="268" width="42" height="4" rx="2" fill="#B9BEC3"/>
+              <g><rect x="311" y="224" width="18" height="9" rx="1" fill="#C0392B"/><text x="320" y="231" text-anchor="middle" font-family="Archivo,Arial,sans-serif" font-size="5.5" font-weight="900" fill="#fff">OPEN</text><path d="M313 224 L320 214 L327 224" fill="none" stroke="#999" stroke-width=".6"/></g>
+              <g fill="#fff" opacity=".8"><rect x="303" y="245" width="16" height="1.3"/><rect x="303" y="249" width="12" height="1.3"/><rect x="303" y="253" width="14" height="1.3"/></g>
+              <!-- planters -->
+              <g><path d="M268 326 L284 326 L282 340 L270 340Z" fill="#3D3A36"/><g filter="url(#scBlur1)"><circle cx="276" cy="318" r="9" fill="url(#scLeaf)"/><circle cx="270" cy="322" r="6" fill="url(#scLeaf)"/><circle cx="282" cy="321" r="6" fill="url(#scLeaf)"/></g></g>
+              <g><path d="M356 326 L372 326 L370 340 L358 340Z" fill="#3D3A36"/><g filter="url(#scBlur1)"><circle cx="364" cy="318" r="9" fill="url(#scLeaf)"/><circle cx="358" cy="322" r="6" fill="url(#scLeaf)"/><circle cx="370" cy="321" r="6" fill="url(#scLeaf)"/></g></g>
+              <!-- base shadow + sidewalk -->
+              <rect x="0" y="340" width="600" height="20" fill="url(#scWalk)"/>
+              <rect x="80" y="338" width="480" height="5" fill="#000" opacity=".18" filter="url(#scBlur1)"/>
+              <g stroke="#8F8B84" stroke-width=".8" opacity=".7"><path d="M0 352H600"/><path d="M40 340 L34 352 M160 340 L156 352 M280 340 L278 352 M400 340 L402 352 M520 340 L524 352"/></g>
+              <rect x="0" y="356" width="600" height="4" fill="#77736C"/>
+              <!-- banner -->
               <g id="bannerG" filter="url(#scSh)">
-                <rect id="bRect" rx="1"/>
-                <text id="bTxt" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial Black,sans-serif" font-weight="900" style="font-variation-settings:'wdth' 118"></text>
-                <g id="bGrom" fill="#E6EBEF" stroke="#5B6770" stroke-width="1"></g>
+                <rect id="bRect" rx=".8"/>
+                <text id="bTxt" text-anchor="middle" dominant-baseline="central" font-family="Archivo,Arial,sans-serif" font-weight="900" style="font-variation-settings:'wdth' 118"></text>
+                <rect id="bSheen" rx=".8" fill="url(#scSheen)" pointer-events="none"/>
+                <g id="bGrom" fill="#E3E7EA" stroke="#6B7580" stroke-width=".9"></g>
               </g>
-              <g id="dims" stroke="#121A2E" stroke-width="1.2" fill="#121A2E" font-family="Archivo,sans-serif" font-weight="800" font-size="11"></g>
-              <!-- person: 5 ft 9 in = 115 units -->
-              <g transform="translate(24 225)" fill="#121A2E">
-                <circle cx="20" cy="10" r="9"/>
-                <path d="M11 22 Q20 18 29 22 L33 58 L30 60 L28 36 L27 62 L28 115 L21 115 L20 70 L19 115 L12 115 L13 62 L12 36 L10 60 L7 58 Z"/>
+              <g id="dims" stroke="#fff" stroke-width="1.2" fill="#fff" font-family="Archivo,Arial,sans-serif" font-weight="800" font-size="11" style="paint-order:stroke"></g>
+              <!-- person, 5 ft 9 in = 115 units tall -->
+              <ellipse cx="62" cy="340" rx="16" ry="2.6" fill="#000" opacity=".28" filter="url(#scBlur1)"/>
+              <g transform="translate(43.5 225)">
+                <path d="M10.5 60 L18.6 60 L17.6 110 L12 110 Z" fill="url(#scJeans)"/><path d="M18.4 60 L26.5 60 L25.2 110 L19.6 110 Z" fill="url(#scJeans)"/>
+                <path d="M18.5 63 L18.5 108" stroke="#1B2A3D" stroke-width=".6"/>
+                <path d="M10.6 109 L18 109 Q18.5 113 17 115 L8 115 Q7.4 112 10.6 109Z" fill="#2B2320"/><path d="M19.4 109 L25.4 109 Q28.8 112 28.4 115 L19.6 115 Q18.8 112 19.4 109Z" fill="#2B2320"/>
+                <path d="M7.4 40 Q3.8 30 7.2 23.5 L10 34 L9 58 Q8.6 63 6.6 63.2 Q4.4 62.6 4.8 58 L5.2 44 Z" fill="url(#scSkin)"/>
+                <path d="M29.6 40 Q33.2 30 29.8 23.5 L27 34 L28 58 Q28.4 63 30.4 63.2 Q32.6 62.6 32.2 58 L31.8 44 Z" fill="url(#scSkin)"/>
+                <path d="M7.5 22.5 Q18.5 17.6 29.5 22.5 Q31.2 27 31.2 35 L27.8 36 L27.4 61 L9.6 61 L9.2 36 L5.8 35 Q5.8 27 7.5 22.5Z" fill="url(#scShirt)"/>
+                <path d="M15 19.5 Q18.5 23.5 22 19.5" fill="none" stroke="#2E3F2C" stroke-width="1"/>
+                <rect x="9.6" y="58.5" width="17.8" height="3" fill="#2B2320"/><rect x="17.2" y="58.8" width="2.6" height="2.4" fill="#B9A06A"/>
+                <rect x="16.2" y="13" width="4.6" height="7" fill="#B98060"/>
+                <ellipse cx="18.5" cy="8.4" rx="5.2" ry="6.6" fill="url(#scSkin)"/>
+                <path d="M13.2 7.6 Q13 1.4 18.6 1.2 Q24.2 1.4 23.9 7.8 Q22.8 4.4 18.6 4.6 Q14.4 4.4 13.2 7.6Z" fill="#3B2A20"/>
               </g>
-              <g font-family="Archivo,sans-serif" font-size="10.5" font-weight="700" fill="#121A2E">
-                <path d="M62 225 V340" stroke="#121A2E" stroke-width="1" stroke-dasharray="3 2"/>
-                <path d="M58 225 H66 M58 340 H66" stroke="#121A2E" stroke-width="1"/>
-                <text x="10" y="216">5′9″ person</text>
+              <g font-family="Archivo,Arial,sans-serif" font-size="10.5" font-weight="800" fill="#fff" stroke="#121A2E" stroke-width="2.6" style="paint-order:stroke">
+                <path d="M36 225 V340" stroke="#fff" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M32 225 H40 M32 340 H40" stroke="#fff" stroke-width="1.2"/>
+                <text x="6" y="218">5′9″ person</text>
               </g>
             </svg>
             <div class="estimate" aria-live="polite">
@@ -568,17 +641,17 @@ footer a{color:#fff}
     const [h,w]=dims_();
     const W=w*FT,H=h*FT,x=CX-W/2,y=BOTTOM-H;
     rectEl.setAttribute('x',x);rectEl.setAttribute('y',y);rectEl.setAttribute('width',W);rectEl.setAttribute('height',H);
-    rectEl.setAttribute('fill',bg);rectEl.setAttribute('stroke',bg==='#FFFFFF'?'#C9D1DA':'none');
+    rectEl.setAttribute('fill',bg);const sh=document.getElementById('bSheen');['x','y','width','height'].forEach((k,i)=>sh.setAttribute(k,[x,y,W,H][i]));rectEl.setAttribute('stroke',bg==='#FFFFFF'?'#C9D1DA':'none');
     const t=text.value.trim()||'Your text here';
     txtEl.textContent=t;txtEl.setAttribute('x',CX);txtEl.setAttribute('y',y+H/2);txtEl.setAttribute('fill',fg);
     txtEl.setAttribute('font-size',Math.max(Math.min(H*.5,(W*.86)/Math.max(t.length*.6,1)),4));
-    const r=Math.max(1.6,Math.min(3,H/18)),ins=r+2.5;
+    const r=Math.max(1.4,Math.min(2.4,H/22)),ins=r+2;
     const xs=[x+ins,x+W-ins];const n=Math.max(0,Math.round(w/2)-1);for(let i=1;i<=n;i++)xs.push(x+ins+(W-2*ins)*i/(n+1));
     gromEl.innerHTML=xs.map(gx=>`<circle cx="${gx}" cy="${y+ins}" r="${r}"/><circle cx="${gx}" cy="${y+H-ins}" r="${r}"/>`).join('');
     // dimension lines
     const dy=y-10,dx=x+W+10;
-    dims.innerHTML=`<path d="M${x} ${dy}H${x+W}M${x} ${dy-4}V${dy+4}M${x+W} ${dy-4}V${dy+4}"/><text x="${CX}" y="${dy-5}" text-anchor="middle" stroke="none" paint-order="stroke">${fmt(w)} ft</text>`+
-      `<path d="M${dx} ${y}V${y+H}M${dx-4} ${y}H${dx+4}M${dx-4} ${y+H}H${dx+4}"/><text x="${dx+6}" y="${y+H/2+4}" stroke="none">${fmt(h)} ft</text>`;
+    dims.innerHTML=`<path d="M${x} ${dy}H${x+W}M${x} ${dy-4}V${dy+4}M${x+W} ${dy-4}V${dy+4}"/><text x="${CX}" y="${dy-5}" text-anchor="middle" stroke="#121A2E" stroke-width="2.6">${fmt(w)} ft</text>`+
+      `<path d="M${dx} ${y}V${y+H}M${dx-4} ${y}H${dx+4}M${dx-4} ${y+H}H${dx+4}"/><text x="${dx+6}" y="${y+H/2+4}" stroke="#121A2E" stroke-width="2.6">${fmt(h)} ft</text>`;
     scene.setAttribute('aria-label','Preview: '+t+' banner, '+fmt(h)+' by '+fmt(w)+' feet, on a 24 foot wide storefront next to a 5 foot 9 inch person');
     const q=clamp(parseInt(qty.value)||1,1,50);
     note.textContent=q+' banner'+(q>1?'s':'')+', '+fmt(h)+' × '+fmt(w)+' ft. Storefront shown is 24 ft wide; person is 5′9″.';
